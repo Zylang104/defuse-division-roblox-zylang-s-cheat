@@ -1,12 +1,10 @@
--- Roblox Executor Script to Display All Spectating Players with Toggle
-
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local isGuiEnabled = false
 
--- Function to check if a player is spectating
+
 local function isSpectating(player)
     local character = player.Character
     if character then
@@ -18,7 +16,6 @@ local function isSpectating(player)
     return false
 end
 
--- Function to create and update the display for a player
 local function createDisplay(player)
     local playerGui = player:WaitForChild("PlayerGui")
     local screenGui = Instance.new("ScreenGui", playerGui)
@@ -32,7 +29,6 @@ local function createDisplay(player)
     textLabel.TextScaled = true
     textLabel.Text = "Spectating: None"
 
-    -- Function to update the text label based on spectator status
     local function updateText()
         local spectatingPlayers = {}
         for _, p in ipairs(Players:GetPlayers()) do
@@ -48,7 +44,6 @@ local function createDisplay(player)
         end
     end
 
-    -- Connect to the RunService to update the display
     local connection
     local function startUpdating()
         connection = RunService.RenderStepped:Connect(function()
@@ -65,7 +60,7 @@ local function createDisplay(player)
         end
     end
 
-    -- Toggle the GUI visibility
+
     local function toggleGui()
         screenGui.Enabled = not screenGui.Enabled
         isGuiEnabled = screenGui.Enabled
@@ -77,23 +72,21 @@ local function createDisplay(player)
         end
     end
 
-    -- Connect the INSERT key to toggle the GUI
     UserInputService.InputBegan:Connect(function(input, gameProcessed)
         if not gameProcessed and input.KeyCode == Enum.KeyCode.Insert then
             toggleGui()
         end
     end)
 
-    -- Initialize the display
     startUpdating()
 end
 
--- Connect to the PlayerAdded event to initialize the display for new players
+
 Players.PlayerAdded:Connect(function(player)
     createDisplay(player)
 end)
 
--- Initialize the display for existing players
+
 for _, player in ipairs(Players:GetPlayers()) do
     createDisplay(player)
 end
