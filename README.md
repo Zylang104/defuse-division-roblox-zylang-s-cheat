@@ -5,3 +5,5 @@ for loading it just paste this
 ```
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Zylang104/defuse-division-roblox-zylang-s-cheat/refs/heads/main/main.lua",true))()
 ```
+# working in progress
+i will try to learn the game and try to exploit it and make my own aimbot and esp whitch is stable, i want also to make the aimbot whit mousemoverel or cframe so i make it for people who as a decent executor and people whit shitty executors, i will add also info on esp and more so i make it also for rage, for rage i alredy have an idea i say it another day because it's to OP
